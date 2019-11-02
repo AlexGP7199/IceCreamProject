@@ -1,0 +1,38 @@
+<% include partials/header %> 
+
+
+
+<div class="container">
+    <header class="jumbotron"> 
+        <div class="container">
+                <h3>Welcome To The List</h3>
+                
+                <p>
+                <a class="btn btn-lg btn-primary" href="/icecream/new">Add New IceCream</a>
+                </p>
+        </div>
+     </header>
+
+
+<div class="container">
+<ul>
+    <% icecream.forEach(function(icecream){ %>
+    <div>
+        <li><%= icecream.name %></li><strong><%= icecream.username %></strong>
+         <div>
+            <p><%= icecream.description %></p> 
+        </div>
+    </div>
+     
+
+   <% });  %>
+</ul>
+    
+</div>
+
+    
+<% include partials/footer %>
+
+
+
+ 
