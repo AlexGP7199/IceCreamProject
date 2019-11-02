@@ -1,4 +1,4 @@
-//preparando express, mongoose, etc . . . 
+//preparando express, mongoose y los demas 
 var express             = require('express'),
     app                 = express(),
     bodyParser          = require('body-parser'),
@@ -35,7 +35,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//var es codigo global!! 
+//var es para codigo global 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
@@ -43,7 +43,7 @@ app.use(function(req, res, next){
 
 
 
-// Schema para la base de datos 
+// Schema para la base de datos de mongo 
 var icecreamSchemaRC = new mongoose.Schema({
     name: String, 
     description: String, 
@@ -86,19 +86,19 @@ app.get("/icecream", function(req,res){
 
 
 
-//FORM TO LIST A NEW ICE CREAM!
+//FORMULARIO QUE LISTA LOS HELADOS
 app.get("/icecream/new", isLoggedIn, function(req, res){
     res.render("../src/views/New");
 });
 
-//ADD NEW ICE CREAM TO THE DB.
+//AGREGA NUEVO HELADO A LA BD
 app.post("/icecream", isLoggedIn, function(req, res){
-    //get data from form and add to icecreams array
+    //get data del formulario y add para agregar el arreglo de helados
     var name = req.body.name;
     var description = req.body.description;
     var username = res.locals.currentUser = req.user;
     var newIcecreams = {name: name, description: description, username: username}
-    //CREATE A NEW ICECREAM AND SAVE TO DB 
+    //CREATE NUEVO HELADO Y GUARDALO EN LA DB 
     IceCream.create(newIcecreams,function(err, newlyAdded){
         if(err){
             console.log(err);
@@ -109,9 +109,9 @@ app.post("/icecream", isLoggedIn, function(req, res){
 });
 
 
-//  ===========
-// AUTH ROUTES
-//  ===========
+
+//  ROUTES DE AUTHOR
+
 
 // show register form
 app.get("/register", function(req, res){
@@ -132,11 +132,11 @@ app.post("/register", function(req, res){
     });
 });
 
-// show login form
+// muestra login form
 app.get("/login", function(req, res){
     res.render("../src/views/login"); 
  });
- // handling login logic
+ // soprte sobre login
  app.post("/login", passport.authenticate("local", 
      {
          successRedirect: "/icecream",
@@ -144,7 +144,7 @@ app.get("/login", function(req, res){
      }), function(req, res){
  });
 
-// logic route
+// route logico
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
@@ -158,7 +158,7 @@ app.get("/logout", function(req, res){
  }
 
 
-//ERROR PAGE
+//Error de pagina
 app.get("*", function(req, res){
     res.render("../src/views/Error")
 });
