@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var passportLocalMongoose = require("passport-local-mongoose");
-// Esquema para la creacion de los datos que recibira el Usuario
+// Esquema para poder recubir los campos de usuario y password
 var UserSchema = new mongoose.Schema({
     username: String,
     password: String

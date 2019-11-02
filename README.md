@@ -9,3 +9,6 @@ Base de datos MongoDB
 HTML
 -Se pueden encotrar en la carpeta de src/views los cuales segun su nombra, va acorde a su funcionalidad
 -El apartado de partials es para delimitar tanto el header como el footer de la pagina web
+
+-Tiene que instalar el paquete de dependencias, los cuales estan presente en mi archivo.json
+

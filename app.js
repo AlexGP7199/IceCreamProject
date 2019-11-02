@@ -113,12 +113,12 @@ app.post("/icecream", isLoggedIn, function(req, res){
 //  ROUTES DE AUTHOR
 
 
-// show register form
+// Muestra el formulario de registro
 app.get("/register", function(req, res){
     res.render("../src/views/register"); 
  });
 
-//handle sign up logic
+//logia de sign up
 app.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
@@ -136,7 +136,7 @@ app.post("/register", function(req, res){
 app.get("/login", function(req, res){
     res.render("../src/views/login"); 
  });
- // soprte sobre login
+ // logica de login
  app.post("/login", passport.authenticate("local", 
      {
          successRedirect: "/icecream",
@@ -144,7 +144,7 @@ app.get("/login", function(req, res){
      }), function(req, res){
  });
 
-// route logico
+// logica de route
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
